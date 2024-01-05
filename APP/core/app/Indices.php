@@ -1,0 +1,13 @@
+<?php
+$HTTP_URI = HTTP_URL;
+$SEPARATORS = explode("/", $HTTP_URI);
+$COUNT_SEPARATOR = (count($SEPARATORS)-1);
+
+$STR_SEPARATOR = "";
+for($i = 0; $i < $COUNT_SEPARATOR; $i++)
+{
+  $STR_SEPARATOR.= "../";
+}
+
+DEFINE("HTTP_SEPARATOR", $STR_SEPARATOR);
+?>
