@@ -47,7 +47,12 @@
                               <li>
                                 <a href="<?php echo PATH; ?>itemsChange/list/">Productos para Canje</a>
                               </li>
-                      <?php } ?>
+                      <?php } if($permisos->Catalogos->Clientes->Consultar == 1) { ?>
+                              <li>
+                                <a href="<?php echo PATH; ?>customers/list/">Clientes</a>
+                              </li>
+                      <?php } 
+                    ?>
                             <li>
                               <a href="<?php echo PATH; ?>catalog/all/">Ver más...</a>
                             </li>

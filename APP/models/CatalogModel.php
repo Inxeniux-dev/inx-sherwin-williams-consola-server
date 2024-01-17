@@ -80,6 +80,17 @@ class CatalogModel
         return  $this->conexion->query($sql);
     }
 
+    public function getRegimen()
+    {
+        $sql = "SELECT idregimen, clave, descripcion, fisica, moral FROM cat_regimen_fiscal;";
+        return $this->conexion->query($sql);
+    }
+
+    public function getUsoCFDIForRegimen($regimen){
+        $sql = "SELECT idusocfdi, clave, descripcion, regimen_fiscal FROM cat_uso_cfdi WHERE REGIMEN_FISCAL LIKE '%".$regimen."%';";
+        return $this->conexion->query($sql);
+    }
+
 }
 
 ?>

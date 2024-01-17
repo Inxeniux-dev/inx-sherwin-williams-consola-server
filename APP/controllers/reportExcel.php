@@ -227,5 +227,10 @@ class ReportExcel extends Controller
         include $this->PATH."reportExcel/card_list_month.php";
       }
 
-      
+      public function customers($type = 0, $search = '', $apellido = '')
+    {
+      $this->customerModel = $this->model('CustomerModel');
+      $data = $this->customerModel->list(-1, $type, $search, $apellido);
+      include $this->PATH."reportExcel/customer_list.php";
+    }
 }

@@ -44,6 +44,12 @@ class PermisoService
                         "Editar" => false,
                         "Eliminar" => false
                     ],
+                    "Clientes" =>[
+                        "Consultar" => false,
+                        "Crear" => false,
+                        "Editar" => false,
+                        "Eliminar" => false,
+                    ],
                     "Catalogos_generales" => [
                         "Consultar" => false,
                         "Crear" => false,
