@@ -3,7 +3,7 @@ $(document).ready(() =>{
         $("#sidebar").toggleClass("active");
         $(".content").toggleClass("active");
     });
-    console.log("read");
+    // console.log("read");
     getCustomers(1);
 });
 
@@ -25,25 +25,25 @@ function getCustomers(page)
     data.append('type', type);
 
     let url = `../../app/api/customer.php?a=11`;
-    console.log(url);
+    // console.log(url);
 
     fetch(url,{method:'POST', body:data})
      .then(function(response) {return response.json();})
      .then(function(data) {
-      console.log('data', data);
+      // console.log('data', data);
        const { code, output }  = data;
       //  console.log('output', output);
          if(code == 200)
          {
             $(".table-items").html(output);
-            $(".r-xls").attr("href", `../../reportExcel/customers/${type}/${apellido}/${search}/`);
-            $(".r-pdf").attr("href", `../../report/customers/${type}/${apellido}/${search}/`);
+            $(".r-xls").attr("href", `../../reportExcel/customers/${type}/${search}/${apellido}/`);
+            $(".r-pdf").attr("href", `../../report/customers/${type}/${search}/${apellido}/`);
          }
          stop_scrum();
      })
      .catch(function(err) {
       showModalMessageError("error", "Error al consultar la información", 2500);
-      console.log('CATCH ERROR getCustomers', err);
+      // console.log('CATCH ERROR getCustomers', err);
       stop_scrum();
     });
 }
@@ -53,10 +53,8 @@ $(".table-items").on("click",".pag-number", function(){
 });
 
 $("#btn-search").click(()=>{ getCustomers(1); });
-// $('#search').keyup(delay(function (e) { getCustomers(1); }, 800));
-// $("#searchApellido").keyup(delay(function (e) { getCustomers(1); }, 800));
-$("#search").keyup(()=>{ getCustomers(1); });
-$("#searchApellido").keyup(()=>{ getCustomers(1); });
+$('#search').keyup(delay(function (e) { getCustomers(1); }, 800));
+$("#searchApellido").keyup(delay(function (e) { getCustomers(1); }, 800));
 $("#type").change(()=>{ getCustomers(1); });
 
 function check_delete(id = 0)

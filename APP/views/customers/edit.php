@@ -207,6 +207,7 @@
     <script>
         let data_fisica = <?php echo json_encode($fisica);?>;
         let data_moral = <?php echo json_encode($moral);?>;
+        let id_regimen = <?php echo json_encode($item->id_regimen);?>;
     </script>
     
     <?php include $_SERVER['DOCUMENT_ROOT']."/".PROJECT."/app/views/includes/scripts.php"?>

@@ -167,7 +167,11 @@ const llenaRegimen = (tipo) => {
   if (tipo == 0) {
     let out = `<option value='-1'>Seleccione</option>`;
     data_fisica.forEach(element => {
-      out += `<option value='${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      if (id_regimen == element.id) {
+        out += `<option selected value = '${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      }else{
+        out += `<option value='${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      }
     });
     $("#regimen").html(out);
   }
@@ -175,7 +179,12 @@ const llenaRegimen = (tipo) => {
   if (tipo == 1) {
     let out = `<option value='-1'>Seleccione</option>`;
     data_moral.forEach(element => {
-      out += `<option value='${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      if(id_regimen == element.id){
+        out += `<option selected value = '${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      }
+      else{
+        out += `<option value = '${element.id}'>${element.clave}-${element.descripcion}</option>`;
+      }
     });
     $("#regimen").html(out);
   }

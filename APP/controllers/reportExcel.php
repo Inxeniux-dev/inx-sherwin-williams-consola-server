@@ -213,7 +213,7 @@ class ReportExcel extends Controller
         $this->cardModel->search = $search;
         $this->cardModel->status = $status;
         $data = $this->cardModel->getList();
-      
+
         include $this->PATH."reportExcel/card_list.php";
       }
 
@@ -227,10 +227,10 @@ class ReportExcel extends Controller
         include $this->PATH."reportExcel/card_list_month.php";
       }
 
-      public function customers($type = 0, $search = '', $apellido = '')
-    {
-      $this->customerModel = $this->model('CustomerModel');
-      $data = $this->customerModel->list(-1, $type, $search, $apellido);
-      include $this->PATH."reportExcel/customer_list.php";
-    }
+      public function customers($type, $search = '', $apellido = '')
+   {
+        $this->customerModel = $this->model('CustomerModel');
+        $data = $this->customerModel->getAllCustomers($type, $search, $apellido);
+        include $this->PATH."reportExcel/customer_list.php";
+   }
 }

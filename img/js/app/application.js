@@ -371,9 +371,28 @@ function statusHTTP(data, urlback)
 
 
 
+function  rfcValido(rfcStr) {
+    var strCorrecta;
+    strCorrecta = rfcStr;   
+    if (rfcStr.length == 12){
+    var valid = '^(([A-ZÑ&]|[a-zñ&]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
+    }else{
+    var valid = '^(([A-ZÑ&]|[a-zñ&]|\s){1})(([A-Z]|[a-z]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
+    }
+    var validRfc=new RegExp(valid);
+    var matchArray=strCorrecta.match(validRfc);
+    if (matchArray==null) {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
 
 
-function rfcValido(rfc, aceptarGenerico = true) {
+
+function ValidaRfc(rfc, aceptarGenerico = true) {
     const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
     var   validado = rfc.match(re);
 

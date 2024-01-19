@@ -57,6 +57,40 @@ class CustomerModel
     }
 
 
+    public function getAllCustomers($type, $search = '', $apellido = '')
+    {
+      try {
+
+          // Construye la condición de búsqueda para el nombre completo
+          $fullname_search = "concat_ws(' ', NOMBRE, APELLIDO) LIKE '%" . $search . "%'";
+
+          $filter = "(".$fullname_search." OR RFC LIKE '%".$search."%' OR RAZON_SOCIAL LIKE '%".$search."%' OR IDCLIENTE LIKE '%".$search."%')";
+
+          if($type == 1){ $filter .= " AND NUM_CREDITO > 0 "; }
+          if($type == 2){ $filter .= " AND NUM_CREDITO = 0 "; }
+          if($type == 3){ $filter .= " AND DESCUENTO > 0 "; }
+          if($type == 4){ $filter .= " AND (SALDO < 0 OR SALDO > 0 )"; }
+          if($type == 5){ $filter .= " AND SALDO  = 0"; }
+
+          if(strlen(trim($apellido)) > 0)
+          {
+            $filter .= " AND APELLIDO LIKE '%".$apellido."%' ";
+          }
+
+          $sql = "SELECT IDCLIENTE, NOMBRE, APELLIDO, RFC, RAZON_SOCIAL, TIPO, EMAIL, TELEFONO, DESCUENTO, PRECIO_ESPECIAL, NUM_CREDITO, SALDO FROM cliente WHERE ".$filter." ORDER BY IDCLIENTE ASC;";
+          // echo "Consulta SQL: " . $sql;
+          $items = $this->conexion->query($sql);
+
+          return $items;
+
+      } catch (Exception $e) {
+        // Captura cualquier excepción y muestra un mensaje de error
+        echo json_encode(["code" => 500, "message" => "Error en la consulta SQL: " . $e->getMessage()]);
+        die(); // Detiene la ejecución del script después de mostrar el mensaje de error
+      }
+
+    }
+
     public function all(){
         $sql = "SELECT * FROM cliente";
         return $this->conexion->query($sql);

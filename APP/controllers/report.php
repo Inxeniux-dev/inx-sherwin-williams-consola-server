@@ -28,10 +28,10 @@ class Report extends Controller
        include $this->PATH."report/store_version.php";
     }
 
-    public function customers($type = 0, $search = '', $apellido = '')
+    public function customers($type, $search = '', $apellido = '')
    {
         $this->customerModel = $this->model('CustomerModel');
-        $data = $this->customerModel->list(-1, $type, $search, $apellido);
+        $data = $this->customerModel->getAllCustomers($type, $search, $apellido);
         include $this->PATH."report/customer_list.php";
    }
 
