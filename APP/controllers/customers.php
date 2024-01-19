@@ -80,17 +80,17 @@ class Customers extends Controller
     public function detail($id = 0)
     {
       if(!$this->permission->Editar){  $this->view('error/permisos', null); return; }
-      $item = $this->model->getData($id);
-      $lineas = $this->lineModel->getAll();
-      $capacity = $this->catalogModel->getCapacity();
-      $this->view('items/detail', ["item" => $item, "lineas" => $lineas, "capacidad" => $capacity]);
+      $regimen = $this->catalogModel->getRegimen();
+      $customer = $this->model->getData($id);
+      $this->view('customers/detail', ["regimen" => $regimen, "item" => $customer]);
     }
 
     public function delete($id = 0)
     {
       if(!$this->permission->Eliminar){  $this->view('error/permisos', null); return; }
-      $item = $this->model->getData($id);
-      $this->view('items/delete', ["item" => $item]);
+      $regimen = $this->catalogModel->getRegimen();
+      $customer = $this->model->getData($id);
+      $this->view('customers/delete', ["regimen" => $regimen, "item" => $customer]);
     }
 
 }

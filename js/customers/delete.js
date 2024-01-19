@@ -6,19 +6,16 @@ $(document).ready(() =>{
 });
 
 $(".btn-delete").click(function(){
-  let codigo = $("#codigo");
-  let idprod  = $("#idprod").val();
+  let idcust  = $("#idcust").val();
 
   loading_scrum('Eliminando, Espere...');
 
-  let url = `../../../app/api/item.php?a=13`;
+  let url = `../../../app/api/customer.php?a=13`;
 
-    console.log(codigo.val());
-    console.log(idprod);
+    console.log(idcust);
 
   const data = new FormData();
-  data.append('codigo', codigo.val());
-  data.append('id', idprod);
+  data.append('id', idcust);
 
   fetch(url,{method:'POST', body:data})
   .then(function(response) {return response.json();})
@@ -26,7 +23,7 @@ $(".btn-delete").click(function(){
     const { code, status }  = data;
       if(code == 201)
       {
-        showModalMessageError("success", "Producto Eliminado Correctamente", 2300);
+        showModalMessageError("success", "Cliente Eliminado Correctamente", 2300);
         setTimeout(function(){ window.location =`../../list/` }, 2300);
         return;
       }

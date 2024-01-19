@@ -98,9 +98,9 @@ class CustomerModel
 
 
 
-     public function deleteItem($code, $id)
+     public function deleteItem($id)
      {
-         $sql = "DELETE FROM articulo WHERE id = '".$id."' AND codigo = '".$code."' LIMIT 1;";
+         $sql = "DELETE FROM cliente WHERE IDCLIENTE = '".$id."' LIMIT 1;";
          return $this->conexion->query($sql);
      }
 

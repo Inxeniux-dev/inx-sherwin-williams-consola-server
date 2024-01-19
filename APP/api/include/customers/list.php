@@ -44,10 +44,17 @@ $output = '<table class = "table table-sm table-hover">
                                     <i class="fa fa-ellipsis-h"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <h6 class="dropdown-header"><b>Opciones</b></h6>';
+                                  <h6 class="dropdown-header"><b>Opciones</b></h6>
+                                  <a class="dropdown-item" href="../detail/'.$row->IDCLIENTE.'/" ><i class="fas fa-eye"></i> Ver detalle</a>';
                                   if($permisos->Editar)
                                   {
+                                      $output .= '<div class="dropdown-divider"></div>';
                                       $output .= '<a class="dropdown-item" href="../edit/'.$row->IDCLIENTE.'/" ><i class="fas fa-edit"></i> Editar</a>';
+                                  }
+                                  if($permisos->Eliminar)
+                                  {
+                                      $output .= '<div class="dropdown-divider"></div>';
+                                      $output .= '<a class="dropdown-item" href="../delete/'.$row->IDCLIENTE.'/" ><i class="fas fa-trash"></i> Eliminar</a>';
                                   }
                       $output .= '</div>
                             </div>

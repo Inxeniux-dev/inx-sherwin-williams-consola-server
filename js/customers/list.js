@@ -57,46 +57,6 @@ $('#search').keyup(delay(function (e) { getCustomers(1); }, 800));
 $("#searchApellido").keyup(delay(function (e) { getCustomers(1); }, 800));
 $("#type").change(()=>{ getCustomers(1); });
 
-function check_delete(id = 0)
-{
-    Swal.fire({
-        title: '¡Espera! ',
-        text: "No podrás revertir esta opción una vez confirmada",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: 'rgb(193 77 77)',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: '¡Si, eliminar producto!',
-        cancelButtonText: 'No'
-      }).then((result) => {
-        if (result.value) {
-          delete_item(id);
-          return;
-        }
-      });
-}
-
-function delete_item(id)
-{
-  let url = `../../app/api/customer.php?a=4`;
-  const data = new FormData();
-  data.append('id', id);
-
-  fetch(url,{method:'POST', body:data})
-  .then(function(response) {return response.json();})
-  .then(function(data) { console.log(data);
-    const {code } = data;
-      if(code == 201)
-      {
-        showModalMessageError("success", "Producto eliminado", 2300);
-        setTimeout(function(){ window.location =`../list/` }, 2300);
-        return;
-      }
-      statusHTTP(data, "../../");
-      stop_scrum();
-  })
-  .catch(function(err) { stop_scrum(); console.log(err); });
-}
 
 function delay(callback, ms) {
     var timer = 0;

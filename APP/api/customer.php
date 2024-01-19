@@ -69,8 +69,8 @@
         case 12:  /* EDITAR CLIENTE GENERAL*/
               require("./include/customers/edit_cust.php");
         break;
-        case 13:  /* ELIMINAR ARTICULO GENERAL */
-           require("./include/customers/delete_prod.php");
+        case 13:  /* ELIMINAR CLIENTE GENERAL */
+           require("./include/customers/delete_cust.php");
         break;
         case 14: /* CARGAR CAMPAÑA DE REFORZAMIENTO */
             require("./include/customers/add_campaing_reforcement.php");
