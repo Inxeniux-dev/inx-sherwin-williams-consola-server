@@ -84,14 +84,14 @@
                                           <div class="form-group row">
                                               <label for="telefono" class="col-sm-4 col-form-label col-form-label-sm">Teléfono</label>
                                               <div class="col-sm-8">
-                                              <input type="text" class="form-control form-control-sm" value='' id="telefono" name="telefono" placeholder="Ingrese teléfono">
+                                              <input type="tel" class="form-control form-control-sm" value='' id="telefono" name="telefono" placeholder="Ingrese teléfono">
                                               </div>
                                           </div>
 
                                           <div class="form-group row">
                                               <label for="celular" class="col-sm-4 col-form-label col-form-label-sm">Celular</label>
                                               <div class="col-sm-8">
-                                              <input type="text" class="form-control form-control-sm" value='' id="celular" name="celular" placeholder="Ingrese celular">
+                                              <input type="tel" class="form-control form-control-sm" value='' id="celular" name="celular" placeholder="Ingrese celular">
                                               </div>
                                           </div>
 

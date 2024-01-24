@@ -20,17 +20,166 @@
   $regimen = isset($_POST["regimen"]) ? trim($_POST["regimen"]) : 0;
 
 
-  // if($rfc == null || strlen($rfc) == 0){ echo json_encode(["code" => 200, "error" => ["El rfc es incorrecto"]]); return; }
-  // if($rfc_confirm == null || strlen($rfc_confirm) == 0 || $rfc != $rfc_confirm){ echo json_encode(["code" => 200, "error" => ["La confirmación del rfc es incorrecta"]]); return; }
-  // if($name == null || strlen($name) == 0){ echo json_encode(["code" => 200, "error" => ["Los nombres son incorrectos"]]); return; }
-  // if($lastname == null || strlen($lastname) == 0){ echo json_encode(["code" => 200, "error" => ["Los apellidos son incorrectos"]]); return; }
-  // if($razon == null || strlen($razon) == 0){ echo json_encode(["code" => 200, "error" => ["La razón es incorrecta"]]); return; }
+/* REQUERIDOS  */
+if(strlen($rfc) == 13)  /* Es persona moral*/
+{
+      if(strlen($name) <= 0)
+      {
+        echo json_encode(["code" => 200, "error" => ["El nombre es requerido"]]); return;
+      }
+      else
+      {
+          if(is_int($name) || is_float($name))
+          {
+            echo json_encode(["code" => 200, "error" => ["El nombre es incorrecto"]]); return;
+          }
+      }
 
-  // if($cp == null || strlen($cp) == 0){ echo json_encode(["code" => 200, "error" => ["El campo código postal incorrecto"]]); return; }
-  // if($municipio == null || strlen($municipio) == 0){ echo json_encode(["code" => 200, "error" => ["El campo municipio es incorrecto"]]); return; }
-  // if($estado == null || strlen($estado) == 0){ echo json_encode(["code" => 200, "error" => ["El campo estado es incorrecto"]]); return; }
-  // if($pais == null || strlen($pais) == 0){ echo json_encode(["code" => 200, "error" => ["El campo país es incorrecto"]]); return; }
-  // if($regimen == null || $regimen == 0){ echo json_encode(["code" => 200, "error" => ["El campo régimen es incorrecto"]]); return; }
+      if(strlen($lastname) <= 0)
+      {
+        echo json_encode(["code" => 200, "error" => ["El apellido es requerido"]]); return;
+      }
+      else
+      {
+          if(is_int($lastname) || is_float($lastname))
+          {
+            echo json_encode(["code" => 200, "error" => ["El apellido es incorrecto"]]); return;
+          }
+      }
+}
+else if (strlen($rfc) == 12) /*Es persona fisica */
+{
+      if(strlen($razon) <= 0)
+      {
+        echo json_encode(["code" => 200, "error" => ["La razón social es requerida"]]); return;
+      }
+      else
+      {
+          if(is_int($razon) || is_float($razon))
+          {
+            echo json_encode(["code" => 200, "error" => ["La razón social es incorrecta"]]); return;
+          }
+      }
+}
+else   /* RFC Incorrecto */
+{
+  echo json_encode(["code" => 200, "error" => ["El rfc es incorrecto"]]); return;
+}
+
+
+if(is_null($cp) || strlen ($cp) <= 0)
+{
+  echo json_encode(["code" => 200, "error" => ["El código postal es requerido"]]); return;
+}
+else{
+      if(!is_numeric($cp))
+      {
+        echo json_encode(["code" => 200, "error" => ["El código postal es incorrecto"]]); return;
+      }
+}
+
+
+if(is_null($municipio) || strlen ($municipio) <= 0)
+{
+  echo json_encode(["code" => 200, "error" => ["El municipio es requerido"]]); return;
+}
+else{
+      if(is_int($municipio) || is_float($municipio))
+      {
+        echo json_encode(["code" => 200, "error" => ["El municipio es incorrecto"]]); return;
+      }
+}
+
+
+if(is_null($estado) || strlen ($estado) <= 0)
+{
+  echo json_encode(["code" => 200, "error" => ["El estado es requerido"]]); return;
+}
+else
+{
+      if(is_int($estado) || is_float($estado))
+      {
+        echo json_encode(["code" => 200, "error" => ["El estado es incorrecto"]]); return;
+      }
+}
+
+
+if(is_null($pais) || strlen($pais) <= 0)
+{
+  echo json_encode(["code" => 200, "error" => ["El país es requerido"]]); return;
+}
+else
+{
+      if(is_int($pais) || is_float($pais))
+      {
+        echo json_encode(["code" => 200, "error" => ["El país es incorrecto"]]); return;
+      }
+}
+
+
+/*-------------------------------------------------------------------------
+-- NO REQUERIDOS: Pero si se ingresan deben de tener el formato correcto --
+-------------------------------------------------------------------------*/
+
+if(strlen($email) > 0)
+{
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+      {
+         echo json_encode(["code" => 200, "error" => ["El email es incorrecto"]]); return;
+      }
+}
+
+
+if(strlen($telefono) > 0)
+{
+      if(!is_numeric($telefono))
+      {
+        echo json_encode(["code" => 200, "error" => ["El teléfono es incorrecto"]]); return;
+      }
+}
+
+
+if(strlen($celular) > 0)
+{
+      if(!is_numeric($celular))
+      {
+        echo json_encode(["code" => 200, "error" => ["El celular es incorrecto"]]); return;
+      }
+}
+
+
+if(strlen($colonia) > 0)
+{
+      if(is_int($colonia) || is_float($colonia))
+      {
+        echo json_encode(["code" => 200, "error" => ["La colinia es incorrecta"]]); return;
+      }
+}
+
+
+if(strlen($numinterior) > 0)
+{
+      if(!is_string($numinterior))
+      {
+        echo json_encode(["code" => 200, "error" => ["El número interior es incorrecto"]]); return;
+      }
+}
+
+
+if(strlen($numexterior) > 0)
+{
+      if(!is_string($numexterior))
+      {
+        echo json_encode(["code" => 200, "error" => ["El número exterior es incorrecto"]]); return;
+      }
+}
+
+
+if(strlen($regimen) <= 0)
+{
+  echo json_encode(["code" => 200, "error" => ["El regimen es incorrecto"]]); return;
+}
+
 
   $duplicado = $model->getCountByFullNameAndRFC($name, $lastname, $rfc);
   if($duplicado->total > 0){ echo json_encode(["code" => 200, "error" => ["El cliente con el nombre, apellidos y rfc proporcionados ya está registrado"]]); return; }
