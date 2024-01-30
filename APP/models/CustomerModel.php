@@ -262,11 +262,11 @@ class CustomerModel
       return $this->conexion->query($sql);
     }
 
-    public function add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen)
+    public function add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen, $uuid)
     {
       try {
         $hoy = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO cliente (NOMBRE, APELLIDO, RFC, RAZON_SOCIAL, TIPO, DIRECCION, COLONIA, NUM_INTERIOR, NUM_EXTERIOR, MUNICIPIO, ESTADO, PAIS, CODIGO_POSTAL, EMAIL, TELEFONO, CELULAR, NUM_VENTAS, DESCUENTO, PRECIO_ESPECIAL, NUM_CREDITO, CREDITO, SALDO, DIAS_DE_PAGO, create_at, id_regimen) VALUES ('".$name."', '".$lastname."', '".$rfc."', '".$razon."', '".$tipo."', '".$direccion."', '".$colonia."',  '".$numinterior."', '".$numexterior."', '".$municipio."', '".$estado."', '".$pais."', '".$cp."', '".$email."', '".$telefono."', '".$celular."', 0, 0.00, 0, 0, 0.00, 0.00, 0, '".$hoy."', '".$regimen."');";
+        $sql = "INSERT INTO cliente (NOMBRE, APELLIDO, RFC, RAZON_SOCIAL, TIPO, DIRECCION, COLONIA, NUM_INTERIOR, NUM_EXTERIOR, MUNICIPIO, ESTADO, PAIS, CODIGO_POSTAL, EMAIL, TELEFONO, CELULAR, NUM_VENTAS, DESCUENTO, PRECIO_ESPECIAL, NUM_CREDITO, CREDITO, SALDO, DIAS_DE_PAGO, create_at, id_regimen, uuid) VALUES ('".$name."', '".$lastname."', '".$rfc."', '".$razon."', '".$tipo."', '".$direccion."', '".$colonia."',  '".$numinterior."', '".$numexterior."', '".$municipio."', '".$estado."', '".$pais."', '".$cp."', '".$email."', '".$telefono."', '".$celular."', 0, 0.00, 0, 0, 0.00, 0.00, 0, '".$hoy."', '".$regimen."', '".$uuid."');";
         // echo "Consulta SQL: " . $sql;
         return $this->conexion->query($sql);
       } catch (Exception $e) {

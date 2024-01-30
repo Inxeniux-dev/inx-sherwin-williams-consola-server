@@ -186,7 +186,10 @@ if(strlen($regimen) <= 0)
 
   $tipo = strlen($rfc) == 13 ? 1 : 0;
 
-  $response = $model->add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen);
+  // Genera el UUID con uniqid
+  $uuid = uniqid('', true);
+
+  $response = $model->add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen, $uuid);
   $code = $response ? 201 : 200;
   $error = $response ? [] : ["Error al crear el cliente"];
   echo json_encode(["code" => $code, "error" => $error]);
