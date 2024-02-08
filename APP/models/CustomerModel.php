@@ -15,8 +15,8 @@ class CustomerModel
     public function list($page, $type, $search, $apellido = '')
     {
       try {
-          $limit = 20;
-          $inicio=($page-1)*$limit;
+          $inicio=($page-1)*100;
+          $limit = 100;
 
           // Construye la condición de búsqueda para el nombre completo
           $fullname_search = "concat_ws(' ', NOMBRE, APELLIDO) LIKE '%" . $search . "%'";
@@ -262,11 +262,11 @@ class CustomerModel
       return $this->conexion->query($sql);
     }
 
-    public function add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen, $uuid_sync)
+    public function add($rfc, $name, $lastname, $razon, $tipo, $email, $telefono, $celular, $direccion, $colonia, $numexterior, $numinterior, $cp, $municipio, $estado, $pais, $regimen)
     {
       try {
         $hoy = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO cliente (NOMBRE, APELLIDO, RFC, RAZON_SOCIAL, TIPO, DIRECCION, COLONIA, NUM_INTERIOR, NUM_EXTERIOR, MUNICIPIO, ESTADO, PAIS, CODIGO_POSTAL, EMAIL, TELEFONO, CELULAR, NUM_VENTAS, DESCUENTO, PRECIO_ESPECIAL, NUM_CREDITO, CREDITO, SALDO, DIAS_DE_PAGO, create_at, id_regimen, uuid_sync) VALUES ('".$name."', '".$lastname."', '".$rfc."', '".$razon."', '".$tipo."', '".$direccion."', '".$colonia."',  '".$numinterior."', '".$numexterior."', '".$municipio."', '".$estado."', '".$pais."', '".$cp."', '".$email."', '".$telefono."', '".$celular."', 0, 0.00, 0, 0, 0.00, 0.00, 0, '".$hoy."', '".$regimen."', '".$uuid_sync."');";
+        $sql = "INSERT INTO cliente (NOMBRE, APELLIDO, RFC, RAZON_SOCIAL, TIPO, DIRECCION, COLONIA, NUM_INTERIOR, NUM_EXTERIOR, MUNICIPIO, ESTADO, PAIS, CODIGO_POSTAL, EMAIL, TELEFONO, CELULAR, NUM_VENTAS, DESCUENTO, PRECIO_ESPECIAL, NUM_CREDITO, CREDITO, SALDO, DIAS_DE_PAGO, create_at, id_regimen, uuid_sync) VALUES ('".$name."', '".$lastname."', '".$rfc."', '".$razon."', '".$tipo."', '".$direccion."', '".$colonia."',  '".$numinterior."', '".$numexterior."', '".$municipio."', '".$estado."', '".$pais."', '".$cp."', '".$email."', '".$telefono."', '".$celular."', 0, 0.00, 0, 0, 0.00, 0.00, 0, '".$hoy."', '".$regimen."', UUID());";
         // echo "Consulta SQL: " . $sql;
         return $this->conexion->query($sql);
       } catch (Exception $e) {

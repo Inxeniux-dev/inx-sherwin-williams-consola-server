@@ -201,10 +201,10 @@ class ItemModel
       return $this->conexion->query($sql);
     }
 
-    public function add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $precio_especial = 0, $peso = 0, $codigo_asociado = "", $idmarca = "0", $uuid_sync)
+    public function add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $precio_especial = 0, $peso = 0, $codigo_asociado = "", $idmarca = "0")
     {
         $hoy = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO articulo (barcode, codigo, descripcion, precio, precio_especial, es_base, descuento, fechini, fechfin, clave_sat, create_at, update_at, idcapacidad, idlinea, peso, status, codigo_asociado, idmarca, edited, uuid_sync) VALUES ('".$barcode."', '".$codigo."', '".$descripcion."', '".$precio."', '".$precio_especial."', '".$es_base."',  '".$descuento."', '".$fechini."', '".$fechfin."', '".$clave_sat."', '".$hoy."', '".$hoy."', '".$capacidad."', '".$linea."', '".$peso."', 1, '".$codigo_asociado."', '".$idmarca."', 1, '".$uuid_sync."');";
+        $sql = "INSERT INTO articulo (barcode, codigo, descripcion, precio, precio_especial, es_base, descuento, fechini, fechfin, clave_sat, create_at, update_at, idcapacidad, idlinea, peso, status, codigo_asociado, idmarca, edited, uuid_sync) VALUES ('".$barcode."', '".$codigo."', '".$descripcion."', '".$precio."', '".$precio_especial."', '".$es_base."',  '".$descuento."', '".$fechini."', '".$fechfin."', '".$clave_sat."', '".$hoy."', '".$hoy."', '".$capacidad."', '".$linea."', '".$peso."', 1, '".$codigo_asociado."', '".$idmarca."', 1, UUID());";
         return $this->conexion->query($sql);
     }
 
