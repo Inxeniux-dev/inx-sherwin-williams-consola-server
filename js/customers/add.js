@@ -49,10 +49,10 @@ $(".btn-save").click(function () {
   if (!rfcCorrecto) { showModalMessageError("warning", "El RFC es incorrecto", 2300); border_error([rfc]); return; }
 
   if (rfc.val().length == 12) {
-    error += valid_imputs([rfc, razon, rfc_confirm]);
+    error += valid_imputs([rfc, razon, rfc_confirm, email]);
   }
   if (rfc.val().length == 13) {
-    error += valid_imputs([rfc, name, lastname, rfc_confirm]);
+    error += valid_imputs([rfc, name, lastname, rfc_confirm, email]);
   }
 
   if (rfc_confirm.val() != rfc.val()) {

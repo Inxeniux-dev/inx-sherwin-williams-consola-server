@@ -42,7 +42,9 @@
 
 
   $precio_especial = 0;
-  $response = $model->add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $precio_especial, $peso, $codigo_asociado, $marca);
+  // Genera el UUID con uniqid
+  $uuid_sync = uniqid('', true);
+  $response = $model->add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $precio_especial, $peso, $codigo_asociado, $marca, $uuid_sync);
   $code = $response ? 201 : 200;
   $error = $response ? [] : ["Error al crear el producto"];
   echo json_encode(["code" => $code, "error" => $error]);
