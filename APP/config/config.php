@@ -10,8 +10,8 @@ define("VERSION", "2.3.2");
 define("DB_HOST","localhost");
 define("DB_NAME", "c_server");
 define("DB_USERNAME","root");
-define("DB_PASSWORD","P@ssw0rd1");
-define("DB_PORT","3307");
+define("DB_PASSWORD","GCHydra16*");
+define("DB_PORT","3306");
 define("DB_ENCODE","utf8");
 
 /*ALMACENES*/

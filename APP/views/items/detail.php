@@ -137,26 +137,41 @@
 
 
                                           <div class="form-group row">
-                                              <label for="descuento" class="col-sm-4 col-form-label col-form-label-sm">Descuento</label>
+                                              <!--<label for="descuento" class="col-sm-4 col-form-label col-form-label-sm">Descuento</label>-->
                                               <div class="col-sm-8">
-                                              <input type="number" class="form-control form-control-sm" value='<?php echo $item->descuento; ?>' id="descuento" name="descuento" placeholder="Ingrese descuento" readonly>
+                                              <input type="hidden" class="form-control form-control-sm" value='<?php echo $item->descuento; ?>' id="descuento" name="descuento" placeholder="Ingrese descuento" readonly>
                                               </div>
                                           </div>
 
                                           <div class="form-group row">
-                                              <label for="fechini" class="col-sm-4 col-form-label col-form-label-sm">Fecha inicial</label>
+                                              <!--<label for="fechini" class="col-sm-4 col-form-label col-form-label-sm">Fecha inicial</label>-->
                                               <div class="col-sm-8">
-                                              <input type="text" class="form-control form-control-sm" id="fechini" name="fechini" value = '<?php echo fechaCortaAbreviada($item->fechini); ?>' readonly>
+                                              <input type="hidden" class="form-control form-control-sm" id="fechini" name="fechini" value = '<?php echo fechaCortaAbreviada($item->fechini); ?>' readonly>
                                               </div>
                                           </div>
 
 
                                           <div class="form-group row">
-                                              <label for="fechfin" class="col-sm-4 col-form-label col-form-label-sm">Fecha final</label>
+                                              <!--<label for="fechfin" class="col-sm-4 col-form-label col-form-label-sm">Fecha final</label>-->
                                               <div class="col-sm-8">
-                                              <input type="text" class="form-control form-control-sm" id="fechfin" name="fechfin" value = '<?php echo fechaCortaAbreviada($item->fechfin); ?>' readonly>
+                                              <input type="hidden" class="form-control form-control-sm" id="fechfin" name="fechfin" value = '<?php echo fechaCortaAbreviada($item->fechfin); ?>' readonly>
                                               </div>
                                           </div>
+
+                                          <div class="form-group row">
+    <label for="promocion" class="col-sm-4 col-form-label col-form-label-sm">Codigo</label>
+    <div class="col-sm-8">
+    <input type="text" class="form-control form-control-sm" id="promocion" name="promocion" placeholder="Escriba la promoción"
+    value='<?php echo $item->promocion; ?>' readonly>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="tituloPromocion" class="col-sm-4 col-form-label col-form-label-sm">Titulo de la promoción</label>
+    <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="tituloPromocion" name="tituloPromocion" disabled readonly>
+    </div>
+</div>
 
                                           <br><hr>
 
@@ -182,6 +197,7 @@
         </div>
 
     <?php include $_SERVER['DOCUMENT_ROOT']."/".PROJECT."/app/views/includes/scripts.php"?>
+    <script src="<?php echo PATH; ?>js/items/edit.js?v=<?php echo(rand()); ?>"></script>
     <script>
     $(document).ready(() =>{
         $("#sidebarCollapse").on('click', function(){

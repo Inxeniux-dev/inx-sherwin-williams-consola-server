@@ -151,24 +151,24 @@
                                           <br><hr>
 
                                           <div class="form-group row">
-                                              <label for="descuento" class="col-sm-4 col-form-label col-form-label-sm">Descuento</label>
+                                              <!--<label for="descuento" class="col-sm-4 col-form-label col-form-label-sm">Descuento</label>-->
                                               <div class="col-sm-8">
-                                              <input type="number" class="form-control form-control-sm" value='' id="descuento" name="descuento" placeholder="Ingrese descuento">
+                                              <input type="hidden" class="form-control form-control-sm" value='' id="descuento" name="descuento" placeholder="Ingrese descuento">
                                               </div>
                                           </div>
 
                                           <div class="form-group row">
-                                              <label for="fechini" class="col-sm-4 col-form-label col-form-label-sm">Fecha inicial</label>
+                                              <!--<label for="fechini" class="col-sm-4 col-form-label col-form-label-sm">Fecha inicial</label>-->
                                               <div class="col-sm-8">
-                                              <input type="date" class="form-control form-control-sm" id="fechini" name="fechini" value = '<?php echo date("Y-m-d");?>'>
+                                              <input type="hidden" class="form-control form-control-sm" id="fechini" name="fechini" value = '<?php echo date("Y-m-d");?>'>
                                               </div>
                                           </div>
 
 
                                           <div class="form-group row">
-                                              <label for="fechfin" class="col-sm-4 col-form-label col-form-label-sm">Fecha final</label>
+                                              <!--<label for="fechfin" class="col-sm-4 col-form-label col-form-label-sm">Fecha final</label>-->
                                               <div class="col-sm-8">
-                                              <input type="date" class="form-control form-control-sm" id="fechfin" name="fechfin" value = '<?php echo date("Y-m-d");?>'>
+                                              <input type="hidden" class="form-control form-control-sm" id="fechfin" name="fechfin" value = '<?php echo date("Y-m-d");?>'>
                                               </div>
                                           </div>
 

@@ -52,9 +52,11 @@ class ItemModel
 
     public function getData($id)
     {
-        $sql = "SELECT articulo.id, codigo, articulo.descripcion, precio, es_base, update_at, linea.descripcion AS linea, articulo.idlinea, barcode, descuento, fechini, fechfin, clave_sat, idcapacidad, peso, articulo.status, codigo_asociado, idmarca  FROM articulo LEFT JOIN linea ON articulo.idlinea = linea.idlinea WHERE id = '".$id."' LIMIT 1";
+        $sql = "SELECT articulo.id, codigo, articulo.descripcion, precio, es_base, update_at, linea.descripcion AS linea, articulo.idlinea, barcode, descuento,promocion,tipoUtilidad,monto, fechini, fechfin, clave_sat, idcapacidad, peso, articulo.status, codigo_asociado, idmarca  FROM articulo LEFT JOIN linea ON articulo.idlinea = linea.idlinea WHERE id = '".$id."' LIMIT 1";
         return $this->conexion->query($sql);
     }
+
+
 
 
     public function update_all_especial($factor)
@@ -201,7 +203,7 @@ class ItemModel
       return $this->conexion->query($sql);
     }
 
-    public function add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $precio_especial = 0, $peso = 0, $codigo_asociado = "", $idmarca = "0")
+    public function add($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento,  $fechini, $fechfin, $es_base, $precio_especial = 0, $peso = 0, $codigo_asociado = "", $idmarca = "0")
     {
         $hoy = date("Y-m-d H:i:s");
         $sql = "INSERT INTO articulo (barcode, codigo, descripcion, precio, precio_especial, es_base, descuento, fechini, fechfin, clave_sat, create_at, update_at, idcapacidad, idlinea, peso, status, codigo_asociado, idmarca, edited, uuid_sync) VALUES ('".$barcode."', '".$codigo."', '".$descripcion."', '".$precio."', '".$precio_especial."', '".$es_base."',  '".$descuento."', '".$fechini."', '".$fechfin."', '".$clave_sat."', '".$hoy."', '".$hoy."', '".$capacidad."', '".$linea."', '".$peso."', 1, '".$codigo_asociado."', '".$idmarca."', 1, UUID());";
@@ -209,13 +211,48 @@ class ItemModel
     }
 
 
-    public function edit($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $id_prod, $precio_especial = 0, $peso = 0, $status = 1, $codigo_asociado = "", $idmarca)
-    {
-        $hoy = date("Y-m-d H:i:s");
-        $sql = "UPDATE articulo SET barcode = '".$barcode."', codigo = '".$codigo."', descripcion = '".$descripcion."', precio = '".$precio."', precio_especial = '".$precio."', es_base = '".$es_base."', descuento = '".$descuento."', fechini = '".$fechini."', fechfin = '".$fechfin."', clave_sat = '".$clave_sat."', create_at = '".$hoy."', update_at = '".$hoy."',
-        idcapacidad = '".$capacidad."', idlinea = '".$linea."', peso = '".$peso."', status = ".$status.", codigo_asociado = '".$codigo_asociado."', idmarca = '".$idmarca."', edited = 1 WHERE id  = '".$id_prod."' LIMIT 1;";
-        return $this->conexion->query($sql);
-    }
+    public function edit($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento,
+    $promocion, $descuentoPromo, $tituloPromo, $tipoUtilidad, $monto, $fechaIniPromo, $fechaFinPromo, $cantidadMinima, $cantidadMaxima, $fechini, $fechfin,
+    $es_base, $id_prod, $precio_especial = 0, $peso = 0, $status = 1, $codigo_asociado = "", $idmarca) {
+
+$hoy = date("Y-m-d H:i:s");
+
+$sql = "UPDATE articulo SET
+barcode = '$barcode',
+codigo = '$codigo',
+descripcion = '$descripcion',
+precio = '$precio',
+precio_especial = '$precio_especial',
+es_base = '$es_base',
+descuento = '$descuento',
+promocion = '$promocion',
+tituloPromo = '$tituloPromo',
+
+descuentoPromo = '$descuentoPromo',
+tipoUtilidad = '$tipoUtilidad',
+monto = '$monto',
+fechaIniPromo = '$fechaIniPromo',
+fechaFinPromo = '$fechaFinPromo',
+cantidadMinima = '$cantidadMinima',
+cantidadMaxima = '$cantidadMaxima',
+fechini = '$fechini',
+fechfin = '$fechfin',
+clave_sat = '$clave_sat',
+create_at = '$hoy',
+update_at = '$hoy',
+idcapacidad = '$capacidad',
+idlinea = '$linea',
+peso = '$peso',
+status = $status,
+codigo_asociado = '$codigo_asociado',
+idmarca = '$idmarca',
+edited = 1
+WHERE id = '$id_prod'
+LIMIT 1;";
+
+return $this->conexion->query($sql);
+}
+
 
 
 
@@ -235,6 +272,31 @@ class ItemModel
       $sql = "UPDATE articulo SET descuento_ref = '".$descuento."', fechini_ref = '".$fechini."', fechfin_ref = '".$fechfin."', update_at = '".$update_at."', sucursales = '".$sucursales."', edited = 1 WHERE codigo = '".$codigo."' LIMIT 1";
       return $this->conexion->query($sql);
     }
+
+
+    public function getPromociones()
+    {
+      $sql ="SELECT * FROM promocion";
+      $result = $this->conexion->query($sql);
+
+
+      if ($result && $result->num_rows > 0) {
+        $promociones = [];
+        while ($row = $result->fetch_assoc()) {
+            $promociones[] = $row;
+        }
+        return $promociones;
+    } else {
+        return [];
+    }
+    }
+
+
+
+
+
+
+
 
 
 }

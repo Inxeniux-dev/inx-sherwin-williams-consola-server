@@ -39,7 +39,7 @@
                                                 <div class="dropdown-divider"></div>
 
                                                 <a class="dropdown-item text-default r-pdf" target="_blank" href="javascript:void(0);">
-                                                    <i class="far fa-file-pdf"></i> Exportar a PDF 
+                                                    <i class="far fa-file-pdf"></i> Exportar a PDF
                                                 </a>
 
                                           <!---      <a class="dropdown-item text-default r-pdf"  target="_blank" href="javascript:void(0);">

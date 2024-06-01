@@ -51,8 +51,13 @@
                               <li>
                                 <a href="<?php echo PATH; ?>customers/list/">Clientes</a>
                               </li>
-                      <?php } 
+                      <?php }if($permisos->Catalogos->Promociones->Consultar == 1) { ?>
+                              <li>
+                                <a href="<?php echo PATH; ?>promociones/list/">Promociones</a>
+                              </li>
+                      <?php }
                     ?>
+
                             <li>
                               <a href="<?php echo PATH; ?>catalog/all/">Ver más...</a>
                             </li>
@@ -146,7 +151,7 @@
                       <?php } ?>
                    </ul>
                </li>
-                           
+
 
             <li>
               <a href="#gestionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-tasks"></i> Gestión</a>
@@ -161,7 +166,7 @@
                     </li>
                   <?php  } ?>
                  </ul>
-                 
+
              </li>
               <li>
                  <a href="#configSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-cogs"></i> Configuración</a>

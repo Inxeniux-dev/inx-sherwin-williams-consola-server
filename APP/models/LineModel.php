@@ -52,7 +52,7 @@ class LineModel
 
     public function delete()
     {
-        $sql = "DELETE FROM linea WHERE idlinea =".$this->id." LIMIT 1;"; 
+        $sql = "DELETE FROM linea WHERE idlinea =".$this->id." LIMIT 1;";
         return $this->conexion->query($sql);
     }
 
@@ -91,6 +91,12 @@ class LineModel
       $paginator =  $this->conexion->query($sql_p);
 
       return array("lines" => $lines, "paginator" =>$paginator);
+    }
+
+    public function getPromociones()
+    {
+      $sql ="SELECT * FROM promocion";
+      return $this->conexion->query($sql);
     }
 
 }

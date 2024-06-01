@@ -29,7 +29,8 @@ class Items extends Controller
       if(!$this->permission->Consultar){  $this->view('error/permisos', null); return; }
       $lineas = $this->lineModel->getAll();
       $capacity = $this->catalogModel->getCapacity();
-      $this->view('items/list', ["lineas" => $lineas, "capacidad" => $capacity, "permisos" => $this->permission]);
+
+      $this->view('items/list', ["lineas" => $lineas, "capacidad" => $capacity, "permisos" => $this->permission ]);
     }
 
     public function campaing()
@@ -75,8 +76,10 @@ class Items extends Controller
       $lineas = $this->lineModel->getAll();
       $marcas = $this->marcaModel->all();
       $capacity = $this->catalogModel->getCapacity();
+
       $this->view('items/edit', ["item" => $item, "lineas" => $lineas, "capacidad" => $capacity, "marcas" => $marcas]);
     }
+
 
     public function detail($id = 0)
     {
@@ -93,5 +96,39 @@ class Items extends Controller
       $item = $this->model->getData($id);
       $this->view('items/delete', ["item" => $item]);
     }
+
+
+    public function getPromociones()
+     {
+       $promociones = $this->model->getPromociones();
+       if (!empty($promociones)) {
+             $response = ["success" => true, "data" => $promociones];
+        } else {
+             $response = ["success" => false, "message" => "No se encontraron artículos"];
+        }
+         echo json_encode($response);
+     }
+
+     public function actualizarPromociones()
+     {
+       $promociones = $this->model->actualizarPromociones();
+       if (!empty($promociones)) {
+             $response = ["success" => true, "data" => $promociones];
+        } else {
+             $response = ["success" => false, "message" => "No se encontraron artículos"];
+        }
+         echo json_encode($response);
+     }
+     public function actualizarPromocionesEstatus()
+     {
+       $promociones = $this->model->actualizarPromocionesEstatus();
+       if (!empty($promociones)) {
+             $response = ["success" => true, "data" => $promociones];
+        } else {
+             $response = ["success" => false, "message" => "No se encontraron artículos"];
+        }
+         echo json_encode($response);
+     }
+
 
 }

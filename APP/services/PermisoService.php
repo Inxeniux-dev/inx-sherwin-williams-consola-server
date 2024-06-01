@@ -38,6 +38,7 @@ class PermisoService
                         "Editar_Precio" => false,
                         "Editar_Descuento" => false
                     ],
+
                     "Productos_para_Canje" => [
                         "Consultar" => false,
                         "Crear" => false,
@@ -45,6 +46,12 @@ class PermisoService
                         "Eliminar" => false
                     ],
                     "Clientes" =>[
+                        "Consultar" => false,
+                        "Crear" => false,
+                        "Editar" => false,
+                        "Eliminar" => false,
+                    ],
+                    "Promociones" =>[
                         "Consultar" => false,
                         "Crear" => false,
                         "Editar" => false,
@@ -231,6 +238,12 @@ class PermisoService
                     "Editar_Precio_Especial" => false,
                     "Editar_Descuento" => false,
                     "Exportar" => false
+                ],
+                "Promociones" =>[
+                    "Consultar" => false,
+                    "Crear" => false,
+                    "Editar" => false,
+                    "Eliminar" => false,
                 ],
                 "Sucursales" =>[
                     "Consultar" => false,

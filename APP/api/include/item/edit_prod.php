@@ -15,11 +15,19 @@
   $fechfin = isset($_POST["fechfin"]) ? trim($_POST["fechfin"]) : 0;
   $peso = isset($_POST["peso"]) ? trim($_POST["peso"]) : 0;
   $marca = isset($_POST["marca"]) ? trim($_POST["marca"]) : 0;
-
+  $promocion = isset($_POST["promocion"]) ? trim($_POST["promocion"]) : 0;
   $id_prod = isset($_POST["id_prod"]) ? trim($_POST["id_prod"]) : 0;
   $hidden = isset($_POST["hidden"]) ? $_POST["hidden"] : 0;
   $bhidden = isset($_POST["bhidden"]) ? $_POST["bhidden"] : 0;
+  $tituloPromo = isset($_POST["tituloPromo"]) ? trim($_POST["tituloPromo"]) : 0;
 
+  $descuentoPromo = isset($_POST["descuentoPromo"]) ? trim($_POST["descuentoPromo"]) : 0;
+  $tipoUtilidad = isset($_POST["tipoUtilidad"]) ? trim($_POST["tipoUtilidad"]) : 0;
+  $monto = isset($_POST["monto"]) ? trim($_POST["monto"]) : 0;
+  $fechaIniPromo = isset($_POST["fechaIniPromo"]) ? trim($_POST["fechaIniPromo"]) : 0;
+  $fechaFinPromo = isset($_POST["fechaFinPromo"]) ? trim($_POST["fechaFinPromo"]) : 0;
+  $cantidadMinima = isset($_POST["cantidadMinima"]) ? trim($_POST["cantidadMinima"]) : 0;
+  $cantidadMaxima = isset($_POST["cantidadMaxima"]) ? trim($_POST["cantidadMaxima"]) : 0;
   $status = isset($_POST["status"]) ? trim($_POST["status"]) : 0;
 
 
@@ -40,7 +48,7 @@
   if($id_prod == null || $precio <= 0){ echo json_encode(["code" => 200, "error" => ["El identificador del producto es incorrecto"]]); return; }
   if($peso == null || $peso < 0 || strlen($peso) == 0){ echo json_encode(["code" => 200, "error" => ["El peso es incorrecto"]]); return; }
   if($marca == null || $marca < 0){ echo json_encode(["code" => 200, "error" => ["El campo 'marca' es incorrecto"]]); return; }
-
+  //if($promocion == null || $promocion < 0){ echo json_encode(["code" => 200, "error" => ["El campo 'promocion' es incorrecto"]]); return; }
   $duplicado = $model->getCountByCodeEdit($codigo, $hidden);
   if($duplicado->total > 0){ echo json_encode(["code" => 200, "error" => ["El producto ya está registrado"]]); return; }
 
@@ -54,7 +62,7 @@
 
 
   $precio_especial = 0;
-  $response = $model->edit($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $fechini, $fechfin, $es_base, $id_prod, $precio_especial, $peso, $status, $codigo_asociado, $marca);
+  $response = $model->edit($codigo, $barcode, $descripcion, $clave_sat, $precio, $linea, $capacidad, $descuento, $promocion, $descuentoPromo, $tituloPromo,$tipoUtilidad, $monto, $fechaIniPromo, $fechaFinPromo, $cantidadMinima, $cantidadMaxima, $fechini, $fechfin, $es_base, $id_prod, $precio_especial, $peso, $status, $codigo_asociado, $marca);
   $code = $response ? 201 : 200;
   $error = $response ? [] : ["Error al crear el producto"];
   echo json_encode(["code" => $code, "error" => $error]);
